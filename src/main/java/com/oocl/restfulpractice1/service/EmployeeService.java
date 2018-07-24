@@ -26,7 +26,14 @@ public class EmployeeService implements EmployeeDao {
 
     @Override
     public Employee addEmployee(Employee employee) {
-        return null;
+        try{
+            employee.setId(id);
+            employees.put(id,employee);
+            id++;
+            return employee;
+        }catch (Exception e){
+            return null;
+        }
     }
 
     @Override
