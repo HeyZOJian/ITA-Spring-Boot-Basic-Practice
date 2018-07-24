@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.oocl.restfulpractice1.domain.Employee;
 import com.oocl.restfulpractice1.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +28,20 @@ public class EmployeeController {
         }
         else{
             response.put("message","add employee failed");
+        }
+        return response;
+    }
+
+    @DeleteMapping("/employee/{employeeId}")
+    public JSONObject deleteEmployee(@PathVariable int employeeId){
+        JSONObject response = new JSONObject();
+        Employee employee = employeeService.deleteEmployee(employeeId);
+        if(employee!=null){
+            response.put("employee",employee);
+            response.put("message","delete successfully");
+        }
+        else{
+            response.put("message","delete failed");
         }
         return response;
     }

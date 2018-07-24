@@ -38,7 +38,11 @@ public class EmployeeService implements EmployeeDao {
 
     @Override
     public Employee deleteEmployee(int id) {
-        return null;
+        try {
+            return employees.remove(id);
+        }catch (Exception e){
+            return null;
+        }
     }
 
     @Override
