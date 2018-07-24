@@ -63,7 +63,7 @@ public class EmployeeService implements EmployeeDao {
 
     @Override
     public Employee searchEmployeeById(int id) {
-        return null;
+        return employees.get(id);
     }
 
 }

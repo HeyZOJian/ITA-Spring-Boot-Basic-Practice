@@ -60,4 +60,17 @@ public class EmployeeController {
         }
         return response;
     }
+
+    @GetMapping("/employee/{employeeId}")
+    public JSONObject searchEmployeeById(@PathVariable int employeeId){
+        JSONObject response = new JSONObject();
+        Employee employee = employeeService.searchEmployeeById(employeeId);
+        if(employee!=null){
+            response.put("employee",employee);
+        }
+        else{
+            response.put("message","ID is no exist");
+        }
+        return response;
+    }
 }
