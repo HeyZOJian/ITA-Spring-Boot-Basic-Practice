@@ -45,4 +45,19 @@ public class EmployeeController {
         }
         return response;
     }
+
+    @PutMapping("/employee/{employeeId}")
+    public JSONObject modifyEmployee(@PathVariable int employeeId,
+                                             @RequestBody Employee employee){
+        JSONObject response = new JSONObject();
+        Employee newEmployee = employeeService.modifyEmployee(employeeId,employee);
+        if(newEmployee!=null) {
+            response.put("employee", newEmployee);
+            response.put("message", "modify successfully");
+        }
+        else{
+            response.put("message","modify failed");
+        }
+        return response;
+    }
 }

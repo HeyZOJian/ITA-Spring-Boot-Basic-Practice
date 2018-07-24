@@ -46,8 +46,19 @@ public class EmployeeService implements EmployeeDao {
     }
 
     @Override
-    public Employee modifyEmployee(int id, Employee employee) {
-        return null;
+    public Employee modifyEmployee(int id,Employee employee) {
+        try {
+            Employee oldEmployee = employees.get(id);
+            Employee newEmployee = new Employee();
+            newEmployee.setId(id);
+            newEmployee.setName(employee.getName()!=null?employee.getName():oldEmployee.getName());
+            newEmployee.setAge(employee.getAge()!=0?employee.getAge():oldEmployee.getAge());
+            newEmployee.setGender(employee.getGender()!=null?employee.getGender():oldEmployee.getGender());
+            employees.put(id,newEmployee);
+            return employees.get(id);
+        }catch (Exception e){
+            return null;
+        }
     }
 
     @Override
